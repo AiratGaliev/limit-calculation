@@ -1,13 +1,22 @@
 package com.github.airatgaliev.limitcalculation.view;
 
 import com.github.airatgaliev.limitcalculation.model.Borrower;
-import com.github.airatgaliev.limitcalculation.model.BorrowerType;
 
 public interface IBorrowerView {
 
-  void printBorrowerInfo(Borrower borrower);
+  void printBorrowerInfoResponse(Borrower borrower);
 
-  Borrower getBorrower(BorrowerType borrowerType);
+  void printBorrowerInfoRequest();
+
+  String getBorrowerAInc();
+
+  String getBorrowerKolIzhd();
+
+  String getBorrowerAExpBank();
+
+  String getBorrowerAExpAnk();
+
+  String getBorrowerAExpBKI();
 
   boolean isCoBorrower();
 }

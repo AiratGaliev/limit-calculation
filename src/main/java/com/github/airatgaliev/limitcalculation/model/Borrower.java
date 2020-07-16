@@ -69,8 +69,7 @@ public class Borrower {
 
   @Override
   public String toString() {
-    return "Заемщик: " +
-        "\n Основной ежемесячный доход: " + aInc +
+    return "\n Основной ежемесячный доход: " + aInc +
         "\n Количество иждивенцев: " + kolIzhd +
         "\n Платеж по кредитам Банка: " + aExpBank +
         "\n Совокупный Платеж по кредитам, который указал клиент в анкете: " + aExpAnk +
