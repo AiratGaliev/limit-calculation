@@ -12,6 +12,7 @@ import com.github.airatgaliev.limitcalculation.view.IMenuView;
 
 public class LimitCalculationController {
 
+  public static final String EXCEPTION_TEXT = "Извините, Вы ввели неверные данные: ";
   private final IBorrowerRepository borrowerRepository;
   private final IBorrowerView borrowerView;
   private final ILimitView limitView;
@@ -70,12 +71,11 @@ public class LimitCalculationController {
   private Double getBorrowerAInc() {
     while (true) {
       try {
-        String aIncString = borrowerView.getBorrowerAInc();
-        validationService.validateString(aIncString);
-        return Double.parseDouble(aIncString);
+        Double aInc = Double.parseDouble(borrowerView.getBorrowerAInc());
+        validationService.validateDoubleValue(aInc);
+        return aInc;
       } catch (NumberFormatException | NegativeArgumentException e) {
-        System.out.println("Извините, Вы ввели неверные данные: " + e.getMessage());
-        continue;
+        System.out.println(EXCEPTION_TEXT + e.getLocalizedMessage());
       }
     }
   }
@@ -83,12 +83,11 @@ public class LimitCalculationController {
   private int getBorrowerKolIzhd() {
     while (true) {
       try {
-        String kolIzhdString = borrowerView.getBorrowerKolIzhd();
-        validationService.validateString(kolIzhdString);
-        return Integer.parseInt(kolIzhdString);
+        int kolIzhdString = Integer.parseInt(borrowerView.getBorrowerKolIzhd());
+        validationService.validateIntegerValue(kolIzhdString);
+        return kolIzhdString;
       } catch (NumberFormatException | NegativeArgumentException e) {
-        System.out.println("Извините, Вы ввели неверные данные: " + e.getMessage());
-        continue;
+        System.out.println(EXCEPTION_TEXT + e.getMessage());
       }
     }
   }
@@ -96,13 +95,11 @@ public class LimitCalculationController {
   private Double getBorrowerAExpBank() {
     while (true) {
       try {
-
-        String aExpBankString = borrowerView.getBorrowerAExpBank();
-        validationService.validateString(aExpBankString);
-        return Double.parseDouble(aExpBankString);
+        Double aExpBankString = Double.parseDouble(borrowerView.getBorrowerAExpBank());
+        validationService.validateDoubleValue(aExpBankString);
+        return aExpBankString;
       } catch (NumberFormatException | NegativeArgumentException e) {
-        System.out.println("Извините, Вы ввели неверные данные: " + e.getMessage());
-        continue;
+        System.out.println(EXCEPTION_TEXT + e.getMessage());
       }
     }
   }
@@ -110,12 +107,11 @@ public class LimitCalculationController {
   private Double getBorrowerAExpAnk() {
     while (true) {
       try {
-        String aExpAnkString = borrowerView.getBorrowerAExpAnk();
-        validationService.validateString(aExpAnkString);
-        return Double.parseDouble(aExpAnkString);
+        Double aExpAnkString = Double.parseDouble(borrowerView.getBorrowerAExpAnk());
+        validationService.validateDoubleValue(aExpAnkString);
+        return aExpAnkString;
       } catch (NumberFormatException | NegativeArgumentException e) {
-        System.out.println("Извините, Вы ввели неверные данные: " + e.getMessage());
-        continue;
+        System.out.println(EXCEPTION_TEXT + e.getMessage());
       }
     }
   }
@@ -123,12 +119,11 @@ public class LimitCalculationController {
   private Double getBorrowerAExpBKI() {
     while (true) {
       try {
-        String aExpBKIString = borrowerView.getBorrowerAExpBKI();
-        validationService.validateString(aExpBKIString);
-        return Double.parseDouble(aExpBKIString);
+        Double aExpBKIString = Double.parseDouble(borrowerView.getBorrowerAExpBKI());
+        validationService.validateDoubleValue(aExpBKIString);
+        return aExpBKIString;
       } catch (NumberFormatException | NegativeArgumentException e) {
-        System.out.println("Извините, Вы ввели неверные данные: " + e.getMessage());
-        continue;
+        System.out.println(EXCEPTION_TEXT + e.getMessage());
       }
     }
   }

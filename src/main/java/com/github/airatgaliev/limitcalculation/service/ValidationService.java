@@ -4,11 +4,15 @@ import com.github.airatgaliev.limitcalculation.exceptions.NegativeArgumentExcept
 
 public class ValidationService {
 
-  private final String NEGATIVE_PREFIX = "-";
+  public void validateDoubleValue(Double value) throws NegativeArgumentException {
+    if (value < 0d) {
+      throw new NegativeArgumentException("отрицательное значение: " + value);
+    }
+  }
 
-  public void validateString(String validationString) throws NegativeArgumentException {
-    if (validationString.startsWith(NEGATIVE_PREFIX)) {
-      throw new NegativeArgumentException("отрицательное значение: " + validationString);
+  public void validateIntegerValue(int value) throws NegativeArgumentException {
+    if (value < 0) {
+      throw new NegativeArgumentException("отрицательное значение: " + value);
     }
   }
 }
