@@ -75,7 +75,6 @@ public class Borrower {
         "\n Платеж по кредитам Банка: " + aExpBank +
         "\n Совокупный Платеж по кредитам, который указал клиент в анкете: " + aExpAnk +
         "\n Совокупный Платеж по кредитам других Банков: " + aExpBKI +
-        "\n Тип заемщика: " + borrowerType.getValue() +
-        '}';
+        "\n Тип заемщика: " + borrowerType.getValue();
   }
 }

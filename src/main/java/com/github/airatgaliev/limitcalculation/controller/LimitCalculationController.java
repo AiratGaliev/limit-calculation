@@ -6,20 +6,24 @@ import com.github.airatgaliev.limitcalculation.repository.IBorrowerRepository;
 import com.github.airatgaliev.limitcalculation.service.LimitCalculationService;
 import com.github.airatgaliev.limitcalculation.view.IBorrowerView;
 import com.github.airatgaliev.limitcalculation.view.ILimitView;
+import com.github.airatgaliev.limitcalculation.view.IMenuView;
 
-public class BorrowerController {
+public class LimitCalculationController {
 
   private final IBorrowerRepository borrowerRepository;
   private final IBorrowerView borrowerView;
   private final ILimitView limitView;
+  private final IMenuView menuView;
   private final LimitCalculationService limitCalculationService = new LimitCalculationService();
 
-  public BorrowerController(
+  public LimitCalculationController(
       IBorrowerRepository borrowerRepository,
-      IBorrowerView borrowerView, ILimitView limitView) {
+      IBorrowerView borrowerView, ILimitView limitView,
+      IMenuView menuView) {
     this.borrowerRepository = borrowerRepository;
     this.borrowerView = borrowerView;
     this.limitView = limitView;
+    this.menuView = menuView;
   }
 
   public void createBorrowers() {
@@ -50,5 +54,9 @@ public class BorrowerController {
     }
     Double limit = limitCalculationService.getCalculatedLimit(limitMA, limitSP);
     limitView.printCreditInfo(limit);
+  }
+
+  public boolean isRestartedCalculation() {
+    return menuView.getRestartOrQuitProgram();
   }
 }
