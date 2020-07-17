@@ -13,8 +13,8 @@ import com.github.airatgaliev.limitcalculation.view.IMenuView;
 public class LimitCalculationApp {
 
   public static void main(String[] args) {
-    boolean isRestartedOrQuit = true;
-    while (isRestartedOrQuit) {
+    boolean isRestarted = true;
+    while (isRestarted) {
       IBorrowerRepository borrowerRepository = new InMemoryBorrowerRepositoryImpl();
       IBorrowerView borrowerView = new ConsoleBorrowerView();
       ILimitView limitView = new ConsoleLimitView();
@@ -24,7 +24,7 @@ public class LimitCalculationApp {
           borrowerView, limitView, menuView);
       limitCalculationController.createBorrowers();
       limitCalculationController.getTotalLimitInfo();
-      isRestartedOrQuit = limitCalculationController.isRestartedCalculation();
+      isRestarted = limitCalculationController.isRestartedCalculation();
     }
   }
 }
