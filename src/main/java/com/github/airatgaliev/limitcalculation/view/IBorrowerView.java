@@ -19,4 +19,6 @@ public interface IBorrowerView {
   String getBorrowerAExpBKI();
 
   boolean isCoBorrower();
+
+  void printExceptionResponse(Exception e);
 }

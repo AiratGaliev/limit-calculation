@@ -12,7 +12,6 @@ import com.github.airatgaliev.limitcalculation.view.IMenuView;
 
 public class LimitCalculationController {
 
-  public static final String EXCEPTION_TEXT = "Извините, Вы ввели неверные данные: ";
   private final IBorrowerRepository borrowerRepository;
   private final IBorrowerView borrowerView;
   private final ILimitView limitView;
@@ -75,7 +74,7 @@ public class LimitCalculationController {
         validationService.validateDoubleValue(aInc);
         return aInc;
       } catch (NumberFormatException | NegativeArgumentException e) {
-        System.out.println(EXCEPTION_TEXT + e.getLocalizedMessage());
+        borrowerView.printExceptionResponse(e);
       }
     }
   }
@@ -87,7 +86,7 @@ public class LimitCalculationController {
         validationService.validateIntegerValue(kolIzhdString);
         return kolIzhdString;
       } catch (NumberFormatException | NegativeArgumentException e) {
-        System.out.println(EXCEPTION_TEXT + e.getMessage());
+        borrowerView.printExceptionResponse(e);
       }
     }
   }
@@ -99,7 +98,7 @@ public class LimitCalculationController {
         validationService.validateDoubleValue(aExpBankString);
         return aExpBankString;
       } catch (NumberFormatException | NegativeArgumentException e) {
-        System.out.println(EXCEPTION_TEXT + e.getMessage());
+        borrowerView.printExceptionResponse(e);
       }
     }
   }
@@ -111,7 +110,7 @@ public class LimitCalculationController {
         validationService.validateDoubleValue(aExpAnkString);
         return aExpAnkString;
       } catch (NumberFormatException | NegativeArgumentException e) {
-        System.out.println(EXCEPTION_TEXT + e.getMessage());
+        borrowerView.printExceptionResponse(e);
       }
     }
   }
@@ -123,7 +122,7 @@ public class LimitCalculationController {
         validationService.validateDoubleValue(aExpBKIString);
         return aExpBKIString;
       } catch (NumberFormatException | NegativeArgumentException e) {
-        System.out.println(EXCEPTION_TEXT + e.getMessage());
+        borrowerView.printExceptionResponse(e);
       }
     }
   }

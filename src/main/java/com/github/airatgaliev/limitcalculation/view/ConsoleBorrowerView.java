@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 public class ConsoleBorrowerView implements IBorrowerView {
 
+  public final String EXCEPTION_TEXT = "Извините, Вы ввели неверные данные: ";
+
   @Override
   public void printBorrowerInfoResponse(Borrower borrower) {
     System.out.println("Добавлена следующая информация по заемщику: " + borrower.toString());
@@ -66,5 +68,10 @@ public class ConsoleBorrowerView implements IBorrowerView {
         System.out.println("Извините, вы ввели неверные данные, повторите попытку");
       }
     }
+  }
+
+  @Override
+  public void printExceptionResponse(Exception e) {
+    System.out.println(EXCEPTION_TEXT + e.getMessage());
   }
 }
