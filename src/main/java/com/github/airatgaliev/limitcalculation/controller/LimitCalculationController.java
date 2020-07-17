@@ -30,37 +30,41 @@ public class LimitCalculationController {
   }
 
   public void createBorrowers() {
-    borrowerView.printBorrowerInfoRequest();
-    Borrower borrowerMA = new Borrower(getBorrowerAInc(), getBorrowerKolIzhd(),
-        getBorrowerAExpBank(), getBorrowerAExpAnk(), getBorrowerAExpBKI(), BorrowerType.MA);
-    borrowerRepository.addBorrower(borrowerMA);
-    borrowerView.printBorrowerInfoResponse(borrowerMA);
+    createBorrower(BorrowerType.MA);
     if (borrowerView.isCoBorrower()) {
-      borrowerView.printBorrowerInfoRequest();
-      Borrower borrowerSP = new Borrower(getBorrowerAInc(), getBorrowerKolIzhd(),
-          getBorrowerAExpBank(), getBorrowerAExpAnk(), getBorrowerAExpBKI(), BorrowerType.SP);
-      borrowerRepository.addBorrower(borrowerSP);
-      borrowerView.printBorrowerInfoResponse(borrowerSP);
+      createBorrower(BorrowerType.SP);
     }
   }
 
-  public void getLimitInfo() {
-    Borrower borrowerMA = borrowerRepository.getBorrowerByType(BorrowerType.MA);
-    Borrower borrowerSP = borrowerRepository.getBorrowerByType(BorrowerType.SP);
-    Double limitMA = 0d;
-    Double limitSP = 0d;
-    if (borrowerMA != null) {
-      limitMA = limitCalculationService
-          .getCalculatedLimitMA(borrowerMA.getaInc(), borrowerMA.getKolIzhd(),
-              borrowerMA.getaExpBank(), borrowerMA.getaExpAnk(), borrowerMA.getaExpBKI());
-    }
-    if (borrowerSP != null) {
-      limitSP = limitCalculationService
-          .getCalculatedLimitSP(borrowerSP.getaInc(), borrowerSP.getKolIzhd(),
-              borrowerSP.getaExpBank(), borrowerSP.getaExpAnk(), borrowerSP.getaExpBKI());
-    }
+  private void createBorrower(BorrowerType borrowerType) {
+    borrowerView.printBorrowerInfoRequest();
+    Borrower borrower = new Borrower(getBorrowerAInc(), getBorrowerKolIzhd(),
+        getBorrowerAExpBank(), getBorrowerAExpAnk(), getBorrowerAExpBKI(), borrowerType);
+    borrowerRepository.addBorrower(borrower);
+    borrowerView.printBorrowerInfoResponse(borrower);
+  }
+
+  public void getTotalLimitInfo() {
+    Double limitMA = getIndividualLimitInfo(BorrowerType.MA);
+    Double limitSP = getIndividualLimitInfo(BorrowerType.SP);
     Double limit = limitCalculationService.getCalculatedLimit(limitMA, limitSP);
     limitView.printCreditInfo(limit);
+  }
+
+  private Double getIndividualLimitInfo(BorrowerType borrowerType) {
+    Borrower borrower = borrowerRepository.getBorrowerByType(borrowerType);
+    Double limit = 0d;
+    if (borrower != null && borrowerType.equals(BorrowerType.MA)) {
+      limit = limitCalculationService
+          .getCalculatedLimitMA(borrower.getaInc(), borrower.getKolIzhd(),
+              borrower.getaExpBank(), borrower.getaExpAnk(), borrower.getaExpBKI());
+    }
+    if (borrower != null && borrowerType.equals(BorrowerType.SP)) {
+      limit = limitCalculationService
+          .getCalculatedLimitSP(borrower.getaInc(), borrower.getKolIzhd(),
+              borrower.getaExpBank(), borrower.getaExpAnk(), borrower.getaExpBKI());
+    }
+    return limit;
   }
 
   public boolean isRestartedCalculation() {

@@ -23,7 +23,7 @@ public class LimitCalculationApp {
           borrowerRepository,
           borrowerView, limitView, menuView);
       limitCalculationController.createBorrowers();
-      limitCalculationController.getLimitInfo();
+      limitCalculationController.getTotalLimitInfo();
       isRestartedOrQuit = limitCalculationController.isRestartedCalculation();
     }
   }
