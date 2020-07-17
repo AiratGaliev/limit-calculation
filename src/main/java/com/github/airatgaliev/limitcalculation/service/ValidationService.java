@@ -4,13 +4,13 @@ import com.github.airatgaliev.limitcalculation.exceptions.NegativeArgumentExcept
 
 public class ValidationService {
 
-  public void validateDoubleValue(Double value) throws NegativeArgumentException {
+  public void validateDoubleValue(Double value) {
     if (value < 0d) {
       throw new NegativeArgumentException("отрицательное значение: " + value);
     }
   }
 
-  public void validateIntegerValue(int value) throws NegativeArgumentException {
+  public void validateIntegerValue(int value) {
     if (value < 0) {
       throw new NegativeArgumentException("отрицательное значение: " + value);
     }
